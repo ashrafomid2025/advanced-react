@@ -1,18 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Checkout from "./Components/Checkout";
-import Login from "./Components/Login";
+import Login from "./pages/Login";
 import Logout from "./Components/Logout";
 import Home from "./pages/Home";
 
-import { UserProvider } from "./context/UserContext";
-import Contact from "./pages/Contact";
-import About from "./pages/About";
-import NotFound from "./pages/Notfound";
-import Profile from "./pages/Profile";
-import ContactMe from "./pages/ContactMe";
-import Product from "./pages/Product";
-import Description from "./pages/Description";
-import ProDetails from "./pages/ProdDetails";
+// import { UserContextProvider } from "./context/UserContext";
+
+import Products from "./pages/Products";
+
 import {
   useCallback,
   useMemo,
@@ -21,30 +16,29 @@ import {
   startTransition,
 } from "react";
 import PrintTable from "./Components/PrintTable";
+import ProductsDetail from "./pages/ProductsDetail";
+import DisplayEmoji from "./Components/DisplayEmoji";
+import Emoji from "./pages/Emoji";
+import Form from "./Components/Form";
+import Display from "./Components/Display";
 function App() {
-  const [input, setInput] = useState("");
-  const [pending, startTransition] = useTransition();
-  const [list, setList] = useState([]);
-
-  const List_size = 20000;
-  function handleChange(e) {
-    setInput(e.target.value);
-    startTransition(() => {
-      const l = [];
-      for (let i = 0; i < List_size; i++) {
-        l.push(input);
-      }
-      setList(l);
-    });
-  }
   return (
     <div>
-      <input type="text" value={input} onChange={handleChange} />
-      {pending
-        ? "Loading..."
-        : list.map((li, index) => <div key={index}>{li}</div>)}
+      <Login />
+      {/* <UserContextProvider>
+        <Form />
+        <Display />
+      </UserContextProvider> */}
       {/* <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="/product/:id" element={<ProductsDetail />} />
+          <Route path="/emoji" element={<Emoji />} />
+        </Routes>
+      </BrowserRouter> */}
+      {/* <BrowserRouter>
+        <Routes>
+        products=> products details
           <Route path="/" element={<Product />} />
           <Route path="/prodetails/:id" element={<ProDetails />} />
           <Route path="*" element={<NotFound />} />
@@ -54,9 +48,9 @@ function App() {
     </div>
   );
 }
-function expensiveCalculation(num) {
-  console.log("loop started");
-  for (let i = 0; i < 1000000000; i++) {}
-  return num;
-}
+// function expensiveCalculation(num) {
+//   console.log("loop started");
+//   for (let i = 0; i < 1000000000; i++) {}
+//   return num;
+// }
 export default App;

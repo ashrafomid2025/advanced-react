@@ -1,23 +1,12 @@
-import { act, createContext, useReducer, useState } from "react";
+import { createContext, useState } from "react";
 
 const UserContext = createContext();
-function UserProvider({ children }) {
-  const [state, dispatch] = useReducer(userReducer, { id: 1, name: null });
-  function userReducer(state, action) {
-    if (action.type === "login") {
-      return { ...state, name: action.payload };
-    }
-    if (action.type === "logout") {
-      return { ...state, name: "guest" };
-      // return
-    }
-  }
-  //   const [username, setUsername] = useState("");
+function UserContextProvider({ children }) {
+  const [name, setName] = useState("guest");
   return (
-    <UserContext.Provider value={{ ...state, dispatch }}>
+    <UserContext.Provider value={{ name, setName }}>
       {children}
     </UserContext.Provider>
   );
 }
-
-export { UserContext, UserProvider };
+export { UserContext, UserContextProvider };
