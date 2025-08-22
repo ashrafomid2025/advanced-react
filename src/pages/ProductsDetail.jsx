@@ -8,8 +8,9 @@ export default function ProductsDetail() {
   const product = products.find((product) => product.id == id);
   const navigate = useNavigate();
   const emoji = product.emoji;
+  const animalName = product.name;
   function handleClick() {
-    navigate("/emoji", { state: { emoji } });
+    navigate("/emoji", { state: { emoji, animalName } });
   }
   return (
     <div>
@@ -17,7 +18,7 @@ export default function ProductsDetail() {
       <h2>{product.emoji}</h2>
       <p>{product.description}</p>
       <button onClick={handleClick}>
-        Click me to display the emoji of {product.name}
+        Click me to show you the emoji of {product.name}
       </button>
     </div>
   );
