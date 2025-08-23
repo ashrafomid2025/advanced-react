@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { nameContext } from "../context/PetContext";
+import { PetNameContext } from "../context/NameContext";
 
 export default function PetForm() {
-  const { pet, setPet } = useContext(nameContext);
+  const { pet, setPet } = useContext(PetNameContext);
   const [value, setValue] = useState("");
   function handleClick() {
     setPet(value);

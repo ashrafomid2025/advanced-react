@@ -7,7 +7,8 @@
 import { createContext, useState } from "react";
 import DisplayPetsName from "./Components/DisplayPetsName";
 import PetForm from "./Components/PetForm";
-import { PetContext } from "./context/PetContext";
+// import { PetContext } from "./context/PetContext";
+import { NameContext } from "./context/NameContext";
 
 // import { createContext, useState } from "react";
 // import DisplayName from "./Components/DisplayName";
@@ -40,10 +41,10 @@ import { PetContext } from "./context/PetContext";
 function App() {
   return (
     <>
-      <PetContext>
+      <NameContext>
         <PetForm />
         <DisplayPetsName />
-      </PetContext>
+      </NameContext>
       {/* context=>provider, consumer, update  */}
     </>
     // <lastNameContext.Provider value={{ lastname, setLastname }}>

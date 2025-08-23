@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { nameContext } from "../context/PetContext";
+
+import { PetNameContext } from "../context/NameContext";
 
 export default function DisplayPetsName() {
-  const { pet } = useContext(nameContext);
+  const { pet } = useContext(PetNameContext);
   return (
     <div>
       <h1>My pet name is {pet}</h1>
