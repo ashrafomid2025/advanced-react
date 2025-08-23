@@ -4,7 +4,7 @@
 // import Logout from "./Components/Logout";
 // import Home from "./pages/Home";
 
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import DisplayPetsName from "./Components/DisplayPetsName";
 import PetForm from "./Components/PetForm";
 // import { PetContext } from "./context/PetContext";
@@ -39,20 +39,55 @@ import { NameContext } from "./context/NameContext";
 // update
 
 function App() {
+  const [value, setValue] = useState(0);
+  const [isDark, setIsDark] = useState(false);
+
+  const number = useMemo(() => {
+    return expensiveLoading(value);
+  }, [value]);
   return (
-    <>
-      <NameContext>
+    <div
+      style={
+        isDark
+          ? {
+              backgroundColor: "black",
+              color: "white",
+            }
+          : {
+              backgroundColor: "white",
+              color: "black",
+            }
+      }
+    >
+      {/* hook useMemo memoization */}
+      <input
+        type="number"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <h1>number equals to {number}</h1>
+      <button onClick={() => setIsDark(!isDark)}>Toggle Theme</button>
+
+      {/* useMemo, useCallback, useTransition */}
+      {/* <NameContext>
         <PetForm />
         <DisplayPetsName />
-      </NameContext>
+      </NameContext> */}
       {/* context=>provider, consumer, update  */}
-    </>
+    </div>
     // <lastNameContext.Provider value={{ lastname, setLastname }}>
     //   <Input />
     //   <DisplayLastName />
     // </lastNameContext.Provider>
   );
 }
+
+function expensiveLoading(value) {
+  console.log("function performance started");
+  for (let i = 0; i < 2000000000; i++) {}
+  return value;
+}
+
 // function expensiveCalculation(num) {
 //   console.log("loop started");
 //   for (let i = 0; i < 1000000000; i++) {}
